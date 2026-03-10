@@ -1,0 +1,56 @@
+# Security Policy
+
+## Supported Versions
+
+| Version | Supported          |
+| ------- | ------------------ |
+| 1.x.x   | :white_check_mark: |
+
+## Reporting a Vulnerability
+
+We take the security of SwiftTap One seriously. If you believe you have discovered a security vulnerability, please report it responsibly.
+
+**Please do not report security vulnerabilities through public GitHub issues.**
+
+### How to Report
+
+1. **Email:** Send details to **security@swifttapone.co.bw** (or privacy@swifttapone.co.bw if security-specific contact is unavailable).
+
+2. **Include:**
+   - Description of the vulnerability
+   - Steps to reproduce
+   - Potential impact assessment
+   - Any suggested fix (if applicable)
+
+3. **Expect:**
+   - Acknowledgement within 48 hours
+   - Initial assessment within 7 business days
+   - Updates on remediation progress as appropriate
+   - Credit in security advisories (unless you prefer anonymity)
+
+### Scope
+
+We welcome reports related to:
+
+- Authentication and authorization flaws
+- Data exposure or leakage
+- Injection vulnerabilities
+- Cryptographic weaknesses
+- Configuration or deployment issues that could compromise security
+
+### Out of Scope
+
+- Issues in third-party dependencies (please report to the maintainer)
+- Social engineering or physical security
+- Denial of service that requires excessive resources to exploit
+- Theoretical issues without demonstrable impact
+
+### Safe Harbor
+
+We support safe, legal security research. We will not pursue legal action against researchers who:
+
+- Make a good-faith effort to avoid privacy violations and data destruction
+- Do not exploit vulnerabilities beyond what is necessary to demonstrate the issue
+- Report findings promptly and give reasonable time for remediation before public disclosure
+
+Thank you for helping keep SwiftTap One and our users secure.

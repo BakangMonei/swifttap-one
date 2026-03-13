@@ -88,12 +88,20 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .hero::before { animation: none; }
+        .hero::before {
+          animation: none;
+        }
       }
 
       @keyframes gradientPulse {
-        0% { opacity: 1; transform: scale(1); }
-        100% { opacity: 0.9; transform: scale(1.05); }
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0.9;
+          transform: scale(1.05);
+        }
       }
 
       .hero-grid-lines {
@@ -120,12 +128,18 @@
       }
 
       @keyframes gridDrift {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(60px, 60px); }
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(60px, 60px);
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .hero-grid-lines { animation: none; }
+        .hero-grid-lines {
+          animation: none;
+        }
       }
 
       .hero-orbs {
@@ -170,23 +184,44 @@
       }
 
       @keyframes orbFloat1 {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        33% { transform: translate(-30px, 20px) scale(1.1); }
-        66% { transform: translate(20px, -30px) scale(0.95); }
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(-30px, 20px) scale(1.1);
+        }
+        66% {
+          transform: translate(20px, -30px) scale(0.95);
+        }
       }
 
       @keyframes orbFloat2 {
-        0%, 100% { transform: translate(0, 0); }
-        50% { transform: translate(40px, -20px); }
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(40px, -20px);
+        }
       }
 
       @keyframes orbFloat3 {
-        0%, 100% { transform: translate(-50%, -50%) scale(1); }
-        50% { transform: translate(-50%, -50%) scale(1.2); }
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.2);
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .hero-orb-1, .hero-orb-2, .hero-orb-3 { animation: none; }
+        .hero-orb-1,
+        .hero-orb-2,
+        .hero-orb-3 {
+          animation: none;
+        }
       }
 
       .hero-nav {
@@ -224,7 +259,9 @@
         font-size: 14px;
         color: var(--ink);
         letter-spacing: -0.02em;
-        transition: box-shadow 0.4s ease, transform 0.4s var(--ease-spring);
+        transition:
+          box-shadow 0.4s ease,
+          transform 0.4s var(--ease-spring);
       }
 
       .logo-mark:hover .logo-icon {
@@ -374,12 +411,21 @@
       }
 
       @keyframes scrollBounce {
-        0%, 100% { transform: scaleY(1); opacity: 1; }
-        50% { transform: scaleY(0.5); opacity: 0.5; }
+        0%,
+        100% {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scaleY(0.5);
+          opacity: 0.5;
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .scroll-line { animation: none; }
+        .scroll-line {
+          animation: none;
+        }
       }
 
       /* ─── SCROLL PROGRESS ─── */
@@ -605,7 +651,9 @@
         justify-content: center;
         margin-bottom: 1.5rem;
         font-size: 1.4rem;
-        transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
+        transition:
+          transform 0.4s var(--ease-spring),
+          box-shadow 0.4s ease;
       }
 
       .channel-name {
@@ -984,7 +1032,9 @@
         font-size: 2.5rem;
         font-weight: 700;
         color: var(--gold);
-        transition: transform 0.5s var(--ease-spring), box-shadow 0.5s ease;
+        transition:
+          transform 0.5s var(--ease-spring),
+          box-shadow 0.5s ease;
       }
 
       .leader-name {
@@ -1156,7 +1206,9 @@
       .reveal {
         opacity: 0;
         transform: translateY(40px);
-        transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        transition:
+          opacity 0.8s var(--ease-out-expo),
+          transform 0.8s var(--ease-out-expo);
       }
 
       .reveal.visible {
@@ -1164,18 +1216,30 @@
         transform: translateY(0);
       }
 
-      .reveal-delay-1 { transition-delay: 0.1s; }
-      .reveal-delay-2 { transition-delay: 0.2s; }
-      .reveal-delay-3 { transition-delay: 0.3s; }
-      .reveal-delay-4 { transition-delay: 0.4s; }
-      .reveal-delay-5 { transition-delay: 0.5s; }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .reveal-delay-5 {
+        transition-delay: 0.5s;
+      }
 
       /* Staggered grid children */
       .channels-grid .channel-card,
       .pillars-grid .pillar {
         opacity: 0;
         transform: translateY(30px);
-        transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
+        transition:
+          opacity 0.6s var(--ease-out-expo),
+          transform 0.6s var(--ease-out-expo);
       }
 
       .channels-grid.visible .channel-card,
@@ -1185,15 +1249,27 @@
       }
 
       .channels-grid.visible .channel-card:nth-child(1),
-      .pillars-grid.visible .pillar:nth-child(1) { transition-delay: 0s; }
+      .pillars-grid.visible .pillar:nth-child(1) {
+        transition-delay: 0s;
+      }
       .channels-grid.visible .channel-card:nth-child(2),
-      .pillars-grid.visible .pillar:nth-child(2) { transition-delay: 0.08s; }
+      .pillars-grid.visible .pillar:nth-child(2) {
+        transition-delay: 0.08s;
+      }
       .channels-grid.visible .channel-card:nth-child(3),
-      .pillars-grid.visible .pillar:nth-child(3) { transition-delay: 0.16s; }
+      .pillars-grid.visible .pillar:nth-child(3) {
+        transition-delay: 0.16s;
+      }
       .channels-grid.visible .channel-card:nth-child(4),
-      .pillars-grid.visible .pillar:nth-child(4) { transition-delay: 0.24s; }
-      .pillars-grid.visible .pillar:nth-child(5) { transition-delay: 0.32s; }
-      .pillars-grid.visible .pillar:nth-child(6) { transition-delay: 0.4s; }
+      .pillars-grid.visible .pillar:nth-child(4) {
+        transition-delay: 0.24s;
+      }
+      .pillars-grid.visible .pillar:nth-child(5) {
+        transition-delay: 0.32s;
+      }
+      .pillars-grid.visible .pillar:nth-child(6) {
+        transition-delay: 0.4s;
+      }
 
       /* ─── RESPONSIVE ─── */
       @media (max-width: 900px) {
@@ -1798,8 +1874,15 @@
       aria-label="Back to top"
       onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 15l-6-6-6 6"/>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M18 15l-6-6-6 6" />
       </svg>
     </button>
 
@@ -1809,9 +1892,12 @@
       const backToTop = document.getElementById("backToTop");
 
       window.addEventListener("scroll", () => {
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        const scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress =
+          scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
         scrollProgress.style.width = `${progress}%`;
 
         if (scrollTop > 400) {
@@ -1834,7 +1920,9 @@
         { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
       );
 
-      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
 
       // ─── Animated stat counters ───
       const statObserver = new IntersectionObserver(
@@ -1871,7 +1959,7 @@
       );
 
       const heroStats = document.querySelector(".hero-stats");
-        if (heroStats) statObserver.observe(heroStats);
-      </script>
-    </body>
-  </html>
+      if (heroStats) statObserver.observe(heroStats);
+    </script>
+  </body>
+</html>

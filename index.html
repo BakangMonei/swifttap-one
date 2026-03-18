@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SwiftTap One — Company Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B1A2E;
+    --ink-soft: #1F4E79;
+    --gold: #C9A84C;
+    --gold-light: #F0D98B;
+    --cream: #FAF7F2;
+    --white: #FFFFFF;
+    --accent: #1F7A5C;
+    --accent-light: #E0F2EB;
+    --rule: rgba(11,26,46,0.12);
+    --mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--ink);
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 30%, rgba(31,78,121,0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,168,76,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    position: relative;
+    z-index: 2;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--gold);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  .logo-text {
+    color: var(--white);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-badge {
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    font-family: var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+  }
+
+  .hero-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 2rem;
+    animation: fadeUp 0.9s 0.35s ease both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.9s 0.5s ease both;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    animation: fadeUp 0.9s 0.65s ease both;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    font-family: var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .hero-scroll {
+    padding: 2rem 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.75rem;
+    font-family: var(--mono);
+    letter-spacing: 0.12em;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.9s 0.8s ease both;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(201,168,76,0.4);
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-full {
+    padding: 6rem 4rem;
+  }
+
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-intro {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(11,26,46,0.7);
+    max-width: 600px;
+    line-height: 1.8;
+  }
+
+  /* ─── WHO WE ARE ─── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    color: rgba(11,26,46,0.75);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .aside-block {
+    border-left: 3px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    background: rgba(201,168,76,0.05);
+  }
+
+  .aside-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .aside-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* ─── WHAT WE DO ─── */
+  .dark-section {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .dark-section .section-title { color: var(--white); }
+  .dark-section .section-intro { color: rgba(255,255,255,0.65); }
+  .dark-section .section-eyebrow { color: var(--gold); }
+  .dark-section .section-eyebrow::before { background: var(--gold); }
+
+  .channels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 4rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .channel-card {
+    padding: 2.5rem 2rem;
+    background: rgba(255,255,255,0.03);
+    transition: background 0.3s ease;
+    position: relative;
+  }
+
+  .channel-card:hover { background: rgba(201,168,76,0.08); }
+
+  .channel-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(201,168,76,0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .channel-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .channel-desc {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .channel-tag {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  /* ─── SANDBOX SECTION ─── */
+  .sandbox-wrapper {
+    background: var(--accent-light);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sandbox-wrapper::before {
+    content: 'SANDBOX';
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(31,122,92,0.06);
+    letter-spacing: 0.1em;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .sandbox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .sandbox-text .section-title { color: var(--ink); }
+  .sandbox-text .section-eyebrow { color: var(--accent); }
+  .sandbox-text .section-eyebrow::before { background: var(--accent); }
+
+  .sandbox-text p {
+    font-size: 1rem;
+    color: rgba(11,26,46,0.72);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+
+  .sandbox-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .fact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(11,26,46,0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .fact-row:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(11,26,46,0.1);
+  }
+
+  .fact-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  .fact-content strong {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+
+  .fact-content span {
+    font-size: 0.82rem;
+    color: rgba(11,26,46,0.55);
+    font-weight: 300;
+  }
+
+  /* ─── PILLARS ─── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .pillar {
+    padding: 2.5rem;
+    border: 1px solid var(--rule);
+    position: relative;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    background: var(--white);
+  }
+
+  .pillar:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(11,26,46,0.08);
+  }
+
+  .pillar::before {
+    content: attr(data-number);
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(201,168,76,0.12);
+    line-height: 1;
+  }
+
+  .pillar-icon {
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .pillar-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+
+  .pillar-text {
+    font-size: 0.88rem;
+    color: rgba(11,26,46,0.6);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ─── COMPLIANCE STRIP ─── */
+  .compliance-strip {
+    background: var(--ink-soft);
+    padding: 4rem;
+  }
+
+  .compliance-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .compliance-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .compliance-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .compliance-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .compliance-item {
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.25s ease;
+  }
+
+  .compliance-item:hover { background: rgba(201,168,76,0.12); }
+
+  .compliance-item-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .compliance-item-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  /* ─── PARTNERS ─── */
+  .partners-section {
+    background: var(--cream);
+  }
+
+  .partners-logos {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .partner-badge {
+    padding: 1rem 1.75rem;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+
+  .partner-badge:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 16px rgba(201,168,76,0.15);
+  }
+
+  .partner-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* ─── MISSION / VISION BAND ─── */
+  .mission-band {
+    background: var(--ink);
+    padding: 5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission-band::after {
+    content: '"';
+    position: absolute;
+    right: 4rem;
+    top: -2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 20rem;
+    color: rgba(201,168,76,0.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .mission-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mission-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 2rem;
+  }
+
+  .mission-quote span { color: var(--gold); }
+
+  .mission-attribution {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ─── LEADERSHIP ─── */
+  .leadership-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 3rem;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .leadership-card:hover {
+    box-shadow: 0 12px 40px rgba(11,26,46,0.08);
+  }
+
+  .leader-avatar {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--ink-soft), var(--ink));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .leader-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .leader-title {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .leader-quals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .qual-chip {
+    background: rgba(31,78,121,0.07);
+    border: 1px solid rgba(31,78,121,0.15);
+    padding: 0.25rem 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+
+  .leader-bio {
+    font-size: 0.92rem;
+    color: rgba(11,26,46,0.7);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ─── CONTACT / FOOTER ─── */
+  .footer {
+    background: var(--ink);
+    padding: 4rem;
+    position: relative;
+  }
+
+  .footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand .logo-text { font-size: 1.4rem; }
+
+  .footer-tagline {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.88rem;
+    font-weight: 300;
+    margin-top: 0.75rem;
+    line-height: 1.7;
+    max-width: 280px;
+  }
+
+  .footer-col-title {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-link {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  .footer-link:hover { color: var(--gold); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.25);
+    font-family: var(--mono);
+  }
+
+  .footer-ref {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.2);
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .about-grid, .sandbox-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .channels-grid { grid-template-columns: 1fr 1fr; }
+    .pillars-grid { grid-template-columns: 1fr 1fr; }
+    .compliance-items { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-nav, .hero-body, .hero-scroll { padding-left: 2rem; padding-right: 2rem; }
+    .section { padding: 4rem 2rem; }
+    .section-full, .compliance-strip, .mission-band, .footer { padding-left: 2rem; padding-right: 2rem; }
+    .hero-stats { gap: 1.5rem; }
+    .leadership-card { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .channels-grid { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .compliance-items { grid-template-columns: 1fr; }
+    .hero-stats { flex-wrap: wrap; }
+    .hero-title { font-size: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ HERO -->
+<header class="hero">
+  <div class="hero-grid-lines"></div>
+
+  <nav class="hero-nav">
+    <div class="logo-mark">
+      <div class="logo-icon">ST1</div>
+      <span class="logo-text">SwiftTap One</span>
+    </div>
+    <span class="hero-badge">BoB Sandbox 2026</span>
+  </nav>
+
+  <div class="hero-body">
+    <p class="hero-eyebrow">Company Profile — March 2026</p>
+    <h1 class="hero-title">Payments<br><em>Without</em><br>Barriers.</h1>
+    <p class="hero-sub">A next-generation inclusive digital payments platform built for Botswana — designed to extend the reach of the formal financial system to every consumer and merchant.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Payment Channels</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">BWP 0</span>
+        <span class="stat-label">Consumer Fees</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">8</span>
+        <span class="stat-label">Compliance Frameworks</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">BoB Supervised</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    <span>Scroll to explore</span>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════ WHO WE ARE -->
+<section class="section">
+  <div class="reveal">
+    <p class="section-eyebrow">Who We Are</p>
+    <h2 class="section-title">Built to bridge the<br>gap in digital payments.</h2>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>SwiftTap One is a Botswana-based fintech innovation developing a modular, cloud-hosted digital payments platform purpose-built for the Bank of Botswana's Regulatory Sandbox. We are not simply building a payments app — we are building the infrastructure for inclusive commerce.</p>
+      <p>Our platform enables consumers to pay using NFC tap, QR code, payment link, or peer-to-peer transfer, and enables merchants of all sizes — from formal retailers to informal traders — to accept digital payments using only the smartphone they already own.</p>
+      <p>We operate under the direct supervision of the Bank of Botswana as a sandbox participant, with a full suite of AML/CFT, consumer protection, ICT security, and risk management frameworks governing every aspect of our operations.</p>
+    </div>
+    <div class="about-aside">
+      <div class="aside-block">
+        <div class="aside-label">Entity Type</div>
+        <div class="aside-value">Fintech Innovation — Regulatory Sandbox Applicant</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Jurisdiction</div>
+        <div class="aside-value">Botswana — Gaborone</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Regulatory Status</div>
+        <div class="aside-value">Bank of Botswana Sandbox 2026 Applicant</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Sandbox Theme</div>
+        <div class="aside-value">Unlocking an Inclusive Digital Payments Ecosystem</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Consumer Fees</div>
+        <div class="aside-value">Zero — Permanently Free for All Standard Services</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Target Launch</div>
+        <div class="aside-value">Phase 1 — April 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ WHAT WE DO -->
+<div class="dark-section section-full">
+  <div class="section" style="max-width:1200px;">
+    <div class="reveal">
+      <p class="section-eyebrow">What We Do</p>
+      <h2 class="section-title">Four ways to pay.<br>One unified platform.</h2>
+      <p class="section-intro">SwiftTap One supports every major digital payment channel in a single, interoperable platform — designed for real Botswana consumers and real Botswana merchants.</p>
+    </div>
+    <div class="channels-grid reveal">
+      <div class="channel-card">
+        <div class="channel-icon">📲</div>
+        <div class="channel-name">NFC Tap-to-Pay</div>
+        <div class="channel-desc">Consumer taps their phone at any NFC-enabled merchant device. Transaction completes in under 3 seconds. No card required.</div>
+        <span class="channel-tag">Contactless</span>
+      </div>
+      <div class="channel-card">
+        <div class="channel-icon">📷</div>
+        <div class="channel-name">QR Code Payments</div>
+        <div class="channel-desc">Merchants display a static or dynamic QR code. Consumers scan and confirm. Works on any smartphone, any network.</div>
+        <span class="channel-tag">Universal</span>
+      </div>
+      <div class="channel-card">
+        <div class="channel-icon">🔗</div>
+        <div class="channel-name">Payment Links</div>
+        <div class="channel-desc">Merchants generate a shareable payment link via WhatsApp, SMS, or email. Remote commerce without a website or terminal.</div>
+        <span class="channel-tag">Remote Commerce</span>
+      </div>
+      <div class="channel-card">
+        <div class="channel-icon">↔️</div>
+        <div class="channel-name">Peer-to-Peer Transfer</div>
+        <div class="channel-desc">Consumers send money directly to any other registered SwiftTap One user by mobile number. Instant. Free.</div>
+        <span class="channel-tag">Instant P2P</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ SANDBOX -->
+<div class="sandbox-wrapper section-full">
+  <div class="section" style="max-width:1200px;">
+    <div class="sandbox-grid reveal">
+      <div class="sandbox-text">
+        <p class="section-eyebrow" style="color:var(--accent);">Regulatory Sandbox</p>
+        <h2 class="section-title">Supervised. Limited. Safe.</h2>
+        <p>SwiftTap One's sandbox participation is designed to be exactly what the Bank of Botswana expects: controlled, low-exposure, consumer-safe, and built around measurable outcomes.</p>
+        <p>Every consumer who joins the sandbox is protected. Every transaction is monitored. Every incident is reported. Every peso of consumer funds is held in a legally ring-fenced custodian account — not a SwiftTap One asset under any circumstances.</p>
+        <p>We are not asking regulators to trust us on faith. We are showing them our controls, our evidence, and our commitment — document by document.</p>
+      </div>
+      <div class="sandbox-facts">
+        <div class="fact-row">
+          <div class="fact-dot"></div>
+          <div class="fact-content">
+            <strong>Transaction Limits</strong>
+            <span>BWP 500 per transaction · BWP 1,500 per day · BWP 5,000 per week</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-dot"></div>
+          <div class="fact-content">
+            <strong>Sandbox Duration</strong>
+            <span>Phase 0–3 across 20 weeks · March–September 2026</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-dot"></div>
+          <div class="fact-content">
+            <strong>Consumer Fund Protection</strong>
+            <span>Ring-fenced segregated account at licensed Botswana custodian bank</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-dot"></div>
+          <div class="fact-content">
+            <strong>Pilot Partners</strong>
+            <span>Botswana Innovation Hub · Botswana Accountancy College · Gambling Authority of Botswana</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-dot"></div>
+          <div class="fact-content">
+            <strong>Reporting to BoB</strong>
+            <span>Daily KPI feed · Weekly report · Monthly comprehensive report · Real-time incident notification</span>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-dot"></div>
+          <div class="fact-content">
+            <strong>50 Monitored KPIs</strong>
+            <span>Across payment performance, compliance, consumer protection, settlement, resilience, and inclusion</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ PILLARS -->
+<section class="section">
+  <div class="reveal">
+    <p class="section-eyebrow">Our Foundations</p>
+    <h2 class="section-title">What we stand on.</h2>
+    <p class="section-intro">Six pillars underpin everything SwiftTap One does — from the first line of code to the last regulatory report.</p>
+  </div>
+  <div class="pillars-grid reveal">
+    <div class="pillar" data-number="01">
+      <div class="pillar-icon">🛡️</div>
+      <div class="pillar-name">Consumer Protection First</div>
+      <div class="pillar-text">Every design decision starts with one question: does this protect the consumer? Zero fees, zero hidden charges, full fund segregation, and unconditional complaint rights.</div>
+    </div>
+    <div class="pillar" data-number="02">
+      <div class="pillar-icon">🔐</div>
+      <div class="pillar-name">Security by Design</div>
+      <div class="pillar-text">Zero Trust architecture. AES-256 encryption everywhere. Biometric MFA. Immutable audit logs. Maker-checker on every sensitive action. Security is not a feature — it is the foundation.</div>
+    </div>
+    <div class="pillar" data-number="03">
+      <div class="pillar-icon">⚖️</div>
+      <div class="pillar-name">Full Regulatory Compliance</div>
+      <div class="pillar-text">AML/CFT/CPF framework aligned to FATF and the Financial Intelligence Act. BDPA 2018 data protection. Bank of Botswana sandbox conditions. All 12 compliance frameworks fully documented.</div>
+    </div>
+    <div class="pillar" data-number="04">
+      <div class="pillar-icon">🌍</div>
+      <div class="pillar-name">Financial Inclusion Mission</div>
+      <div class="pillar-text">30% of pilot participants drawn from unbanked or underbanked segments. Setswana language support. Assisted onboarding. Vulnerable customer policy. Inclusion is not a metric — it is our mandate.</div>
+    </div>
+    <div class="pillar" data-number="05">
+      <div class="pillar-icon">🔄</div>
+      <div class="pillar-name">Interoperability</div>
+      <div class="pillar-text">OpenAPI 3.0 standards. ISO 20022 compatible settlement. Partner-agnostic architecture. Designed to work with any Botswana bank, any mobile money provider, and the BoB monitoring environment.</div>
+    </div>
+    <div class="pillar" data-number="06">
+      <div class="pillar-icon">📊</div>
+      <div class="pillar-name">Supervisory Transparency</div>
+      <div class="pillar-text">Real-time KPI feeds to the Bank of Botswana. Incident notification within 2 hours. Audit log access within 24 hours. Nothing happens in SwiftTap One that the regulator cannot see.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ COMPLIANCE -->
+<div class="compliance-strip">
+  <div class="compliance-inner">
+    <h3 class="compliance-title">Compliance & Governance Frameworks</h3>
+    <div class="compliance-items">
+      <div class="compliance-item">
+        <div class="compliance-item-label">AML / CFT / CPF</div>
+        <div class="compliance-item-name">Financial Intelligence Act · FATF Recommendations · UN Sanctions</div>
+      </div>
+      <div class="compliance-item">
+        <div class="compliance-item-label">Data Privacy</div>
+        <div class="compliance-item-name">Botswana Data Protection Act 2018 · Privacy by Design · GDPR-aligned</div>
+      </div>
+      <div class="compliance-item">
+        <div class="compliance-item-label">ICT Security</div>
+        <div class="compliance-item-name">ISO/IEC 27001:2022 · NIST CSF 2.0 · OWASP API Top 10 · PCI DSS 4.0</div>
+      </div>
+      <div class="compliance-item">
+        <div class="compliance-item-label">Consumer Protection</div>
+        <div class="compliance-item-name">Consumer Protection Act Cap 42:04 · BoB Sandbox Directive · Vulnerable Customer Policy</div>
+      </div>
+      <div class="compliance-item">
+        <div class="compliance-item-label">Business Continuity</div>
+        <div class="compliance-item-name">BCP · DR Plan · 16-Step Wind-Down · Fund Protection Architecture</div>
+      </div>
+      <div class="compliance-item">
+        <div class="compliance-item-label">Partner Risk</div>
+        <div class="compliance-item-name">Due Diligence · SLA Management · Circuit Breakers · Custodian Safeguards</div>
+      </div>
+      <div class="compliance-item">
+        <div class="compliance-item-label">Internal Controls</div>
+        <div class="compliance-item-name">Maker-Checker · Immutable Audit Logs · Change Management · Privileged Access Review</div>
+      </div>
+      <div class="compliance-item">
+        <div class="compliance-item-label">Exit & Resolution</div>
+        <div class="compliance-item-name">10 Failure Triggers · 16-Step Wind-Down · 6 Communication Templates · BoB Coordination</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ PARTNERS -->
+<section class="section partners-section">
+  <div class="reveal">
+    <p class="section-eyebrow">Pilot Partners</p>
+    <h2 class="section-title">Strong ecosystem.<br>From day one.</h2>
+    <p class="section-intro">SwiftTap One's sandbox ecosystem is supported by established Botswana institutions providing innovation infrastructure, academic cohorts, and compliance benchmarking.</p>
+  </div>
+  <div class="partners-logos reveal">
+    <div class="partner-badge"><span class="partner-dot"></span>Botswana Innovation Hub</div>
+    <div class="partner-badge"><span class="partner-dot"></span>Botswana Accountancy College</div>
+    <div class="partner-badge"><span class="partner-dot"></span>Gambling Authority of Botswana</div>
+    <div class="partner-badge"><span class="partner-dot"></span>Licensed Custodian Bank (TBC)</div>
+    <div class="partner-badge"><span class="partner-dot"></span>KYC Verification Provider (TBC)</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ MISSION -->
+<div class="mission-band">
+  <div class="mission-inner reveal">
+    <p class="mission-quote">"SwiftTap One will be tested as a <span>controlled, low-exposure, cross-platform digital payments pilot</span> focused on inclusive merchant acceptance, interoperable payment execution, and strong consumer and operational safeguards."</p>
+    <p class="mission-attribution">SwiftTap One — Regulatory Positioning Statement · BoB Sandbox 2026</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ LEADERSHIP -->
+<section class="section">
+  <div class="reveal">
+    <p class="section-eyebrow">Leadership</p>
+    <h2 class="section-title">Depth of expertise.<br>Breadth of commitment.</h2>
+    <p class="section-intro">SwiftTap One is led by a practitioner with rare convergence of deep technical expertise, advanced academic credentials, and senior business leadership experience.</p>
+  </div>
+  <div class="leadership-card reveal">
+    <div class="leader-avatar">[N]</div>
+    <div>
+      <div class="leader-name">[Full Name]</div>
+      <div class="leader-title">Founder · Senior Principal Software Engineer · MLRO</div>
+      <div class="leader-quals">
+        <span class="qual-chip">BSc Hons</span>
+        <span class="qual-chip">E-MBA</span>
+        <span class="qual-chip">MSc</span>
+        <span class="qual-chip">MEng</span>
+        <span class="qual-chip">PhD</span>
+        <span class="qual-chip">DB</span>
+        <span class="qual-chip">Senior Professor — CS & Business</span>
+      </div>
+      <p class="leader-bio">A Senior Principal Software Engineer with doctoral-level expertise spanning computer science, engineering, and business administration. Serving as both the technical lead and designated Money Laundering Reporting Officer (MLRO), this rare convergence of credentials — practitioner, academic, and compliance professional — positions SwiftTap One with an unusually robust governance foundation for a fintech sandbox applicant. The leadership team brings direct accountability for architecture, AML/CFT compliance, regulatory engagement, and consumer protection in a single, integrated role.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-mark">
+        <div class="logo-icon">ST1</div>
+        <span class="logo-text">SwiftTap One</span>
+      </div>
+      <p class="footer-tagline">A modular, API-driven, cloud-hosted digital payments platform — built for Botswana's inclusive financial future.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Regulatory</p>
+      <div class="footer-links">
+        <span class="footer-link">Bank of Botswana Sandbox</span>
+        <span class="footer-link">Theme: Inclusive Digital Payments</span>
+        <span class="footer-link">Sandbox Period: 2026</span>
+        <span class="footer-link">Phase 0 — March 2026</span>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Contact</p>
+      <div class="footer-links">
+        <span class="footer-link">support@swifttapone.co.bw</span>
+        <span class="footer-link">complaints@swifttapone.co.bw</span>
+        <span class="footer-link">privacy@swifttapone.co.bw</span>
+        <span class="footer-link">Gaborone, Botswana</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 SwiftTap One. All rights reserved.</span>
+    <span class="footer-ref">BoB-RS-2026-STO · Company Profile v1.0</span>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 0);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

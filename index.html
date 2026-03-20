@@ -1569,6 +1569,29 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .footer-bottom-left {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .footer-designed {
+        font-size: 0.72rem;
+        color: var(--ink-soft);
+        font-family: var(--font-mono);
+      }
+
+      .footer-designed .footer-link {
+        color: var(--primary);
+      }
+
+      .footer-designed .footer-link:hover {
+        color: var(--primary);
+        opacity: 0.9;
       }
 
       .footer-copy {
@@ -2466,9 +2489,15 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy"
-          >© 2026 SwiftTap One. All rights reserved.</span
-        >
+        <div class="footer-bottom-left">
+          <span class="footer-copy"
+            >© 2026 SwiftTap One. All rights reserved.</span
+          >
+          <span class="footer-designed">
+            Designed by
+            <a href="https://www.bakangmonei.co.bw" class="footer-link" target="_blank" rel="noopener noreferrer">Monei Bakang Mothuti</a>
+          </span>
+        </div>
         <span class="footer-ref">BoB-RS-2026-STO · v1.0</span>
       </div>
     </footer>
